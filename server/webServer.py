@@ -92,10 +92,10 @@ def robotCtrl(command_input, response):
         scGear.stopWiggle()
 
     elif command_input == "B_add":
-        scGear.singleServo(1, 1, 1) # (servoPort, direction, speed)
+        scGear.singleServo(1, -1, 1) # (servoPort, direction, speed)
 
     elif command_input == "B_minus":
-        scGear.singleServo(1, -1, 1)
+        scGear.singleServo(1, 1, 1)
 
     elif command_input == "BS":
         scGear.stopWiggle()

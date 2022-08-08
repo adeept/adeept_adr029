@@ -24,7 +24,7 @@ def set_angle(ID, angle):
 # pwm_max  = 500        180° 
 # pwm_min  = 100        0°
  
-angle = [90, 90, 90, 90]    # The angle of all servos is 90°.
+angle = [90, 90, 90, 90, 90]    # The angle of all servos is 90°.
 speed = 1 # servo rotation speed.
 forward = 1
 reverse = -1
@@ -88,9 +88,9 @@ def move_servo(value):
     elif value == -3:
         rotation(2, reverse, speed)
     elif value == 4:        # servo 4
-        rotation(3, forward, speed)
+        rotation(4, forward, speed)
     elif value == -4:
-        rotation(3, reverse, speed)
+        rotation(4, reverse, speed)
     else:
         rotation(None, reverse, speed)
     
@@ -149,7 +149,7 @@ def loop():
     if mark != value:
         # print(value)
         mark = value
-    time.sleep(0.05)
+    time.sleep(0.01)
 
 def destroy():
     GPIO.cleanup()   
@@ -157,9 +157,9 @@ def destroy():
 
 if __name__ == '__main__':
     setup()
-    try:
-        while True:
-            loop()
-    except:
-        destroy()
+   # try:
+    while True:
+        loop()
+    #except:
+     #   destroy()
 
