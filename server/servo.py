@@ -42,19 +42,15 @@ pca.deinit()
 def test(channel):
     for i in range(180):
         set_angle(channel, i)
-        time.sleep(0.00)
+        time.sleep(0.01)
     time.sleep(0.5)
     for i in range(180):
         set_angle(channel, 180-i)
-        time.sleep(0.02)
+        time.sleep(0.01)
     time.sleep(0.5)
 
 if __name__ == "__main__":
     channel = 0
-    test(channel)
+    while True:
+        test(channel)
 
-'''
-
-'''
-
-#servo7.angle = 90
