@@ -164,7 +164,7 @@ def joystick():
              'R-home','R-pressed', 'R-up', 'R-down', 'R-left', 'R-right']
     value = None
     if GPIO.input(L_btn) == 0:
-        value = -6
+        value = 5 #-6
         state_num = 1
         servoD_mark = 1
     elif GPIO.input(R_btn) == 0:
@@ -174,19 +174,19 @@ def joystick():
     else:
         value = 0
         state_num = 0
-    if ADC.read(1) <= 30:  # servo A
+    if ADC.read(0) <= 30:  # servo A
         value = 1 
-        state_num = 2
-    elif ADC.read(1)>= 210 :   # servo A
-        value = -1
         state_num = 3
+    elif ADC.read(0)>= 210 :   # servo A
+        value = -1
+        state_num = 2
 
-    if ADC.read(0) >= 210:   # servo B
+    if ADC.read(1) >= 210:   # servo B
         value = 2
-        state_num = 4
-    elif ADC.read(0) <= 30: 
-        value = -2
         state_num = 5
+    elif ADC.read(1) <= 30: 
+        value = -2
+        state_num = 4
 
     if ADC.read(2) <= 30: # servo C
         value = 3
