@@ -128,34 +128,34 @@ def joystick(): #get joystick result.
 
     if ADC.read(0) <= 30:  # servo 1 ############### fixed 
         value = 1 
-        state_num = 3 # L-left CHANGED DOWN 
+        state_num = 3 # L-down
     elif ADC.read(0)>= 210 :   # servo 1
         value = -1
-        state_num = 2 # L-right CHANGED UP
+        state_num = 2 # L-right
 
     if ADC.read(1) >= 210:   # servo 2 ################ fixed
         value = 2
-        state_num = 5 # L-up RIGHT
+        state_num = 5 # L-right
     elif ADC.read(1) <= 30: 
         value = -2
-        state_num = 4 # L-down LEFT
+        state_num = 4 # L-left
 
     if ADC.read(2) <= 30: # servo 3
         value = 3
-        state_num = 9 # R down 
+        state_num = 9 # R-down 
     elif ADC.read(2)>= 210 :   # servo 3
         value = -3 
         state_num = 8 # R up 
 
     if ADC.read(3) <= 30:   # servo 4
         value = 4
-        state_num = 10 # R left 
+        state_num = 10 # R-left 
     elif ADC.read(3) >= 210: 
         value = -4
-        state_num = 11 # R right 
+        state_num = 11 # R-right 
     
-    if state_mark != state_num: # print state.
-        print(state[state_num])   #######   PRINTS  
+    if state_mark != state_num: # print state
+        print(state[state_num])
         state_mark = state_num
     return value
 

@@ -164,7 +164,7 @@ def joystick():
              'R-home','R-pressed', 'R-up', 'R-down', 'R-left', 'R-right']
     value = None
     if GPIO.input(L_btn) == 0:
-        value = 5 #-6
+        value = 5
         state_num = 1
         servoD_mark = 1
     elif GPIO.input(R_btn) == 0:
