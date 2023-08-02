@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 import PCF8591 as ADC
 import time
 
-btn = 12	# Define button pin
+btn = 11	# Define button pin
 
 def setup():
     ADC.setup(0X48)
@@ -24,11 +24,11 @@ def direction():    #get joystick result
     if ADC.read(1) >= 200:
         i = 4        #right
 
-    # if GPIO.input(btn) == 0:
-    #     i = 5        # Button pressed 
+    if GPIO.input(btn) == 0:
+        i = 5        # Button pressed 
 
-    # if GPIO.input(btn) == 1 and ADC.read(1) - 125 < 15 and ADC.read(1) - 125 > -15 and ADC.read(2) == 255:
-    #     i = 0
+    if GPIO.input(btn) == 1 and ADC.read(1) - 125 < 15 and ADC.read(1) - 125 > -15 and ADC.read(2) == 255:
+        i = 0
     
     return state[i]
 
