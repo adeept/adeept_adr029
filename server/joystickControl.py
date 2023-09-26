@@ -21,7 +21,7 @@ def set_angle(ID, angle):
     servo_angle.angle = angle
 
 # pwm_init = 300        90°
-# pwm_max  = 500        180° 
+# pwm_max  = 500        180°
 # pwm_min  = 100        0°
  
 angle = [90, 90, 90, 90, 90]    # The angle of all servos is 90°.
@@ -96,48 +96,65 @@ def move_servo(value):
     
 def joystick(): #get joystick result.
     global state_num, state_mark
+    #state_num 
+    # 0 home
+    # 1 L-pressed
+    # 2 L-up
+    # 3 L-down
+    # 4 L-left 
+    # 5 L-right
+    # 6 R-home
+    # 7 R-pressed
+    # 8 R-up
+    # 9 R down 
+    # 10 R left 
+    # 11 R right 
+    # value number corresponds to servo number
+
+    global state_num, state_mark
     state = ['home','L-pressed', 'L-up', 'L-down', 'L-left', 'L-right',\
              'R-home','R-pressed', 'R-up', 'R-down', 'R-left', 'R-right']
+
     value = None
     if GPIO.input(L_btn) == 0:
         value = 5
-        state_num = 1
+        state_num = 1 #L-pressed
     elif GPIO.input(R_btn) == 0:
         value = 6
-        state_num = 7
+        state_num = 7 #R-pressed
     else:
         value = 0
         state_num = 0
 
-    if ADC.read(1) <= 30:  # servo 1
+    if ADC.read(0) <= 30:  # servo 1 ############### fixed 
         value = 1 
-        state_num = 4
-    elif ADC.read(1)>= 210 :   # servo 1
+        state_num = 3 # L-down
+    elif ADC.read(0)>= 210 :   # servo 1
         value = -1
-        state_num = 5
+        state_num = 2 # L-right
 
-    if ADC.read(0) >= 210:   # servo 2
+    if ADC.read(1) >= 210:   # servo 2 ################ fixed
         value = 2
-        state_num = 2
-    elif ADC.read(0) <= 30: 
+        state_num = 5 # L-right
+    elif ADC.read(1) <= 30: 
         value = -2
-        state_num = 3
+        state_num = 4 # L-left
 
     if ADC.read(2) <= 30: # servo 3
         value = 3
-        state_num = 9
+        state_num = 9 # R-down 
     elif ADC.read(2)>= 210 :   # servo 3
         value = -3 
-        state_num = 8
+        state_num = 8 # R up 
 
     if ADC.read(3) <= 30:   # servo 4
         value = 4
-        state_num = 10
+        state_num = 10 # R-left 
     elif ADC.read(3) >= 210: 
         value = -4
-        state_num = 11
+        state_num = 11 # R-right 
     
-    if state_mark != state_num: # print state.
+    if state_mark != state_num: # print state
         print(state[state_num])
         state_mark = state_num
     return value
@@ -157,7 +174,7 @@ def destroy():
 
 if __name__ == '__main__':
     setup()
-   # try:
+    # try:
     while True:
         loop()
     #except:
